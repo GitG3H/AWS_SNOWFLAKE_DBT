@@ -1,0 +1,36 @@
+
+name: 'aws_dbt_snowflake_project'
+version: '1.0.0'
+
+
+profile: 'aws_dbt_snowflake_project'
+
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+models:
+  aws_dbt_snowflake_project:
+    # Config indicated by + and applies to all files under models/example/
+    bronze:
+      +materialized: table
+      +schema: BRONZE
+    silver:
+      +materialized: table
+      +schema: SILVER
+    gold:
+      +materialized: table
+      +schema: GOLD
+    ephemeral:
+      +materialized: ephemeral
+      
+    
